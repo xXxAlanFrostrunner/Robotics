@@ -49,7 +49,7 @@ public class Camera_v1 extends LinearOpMode {
             while (opModeIsActive()) {
                 // Put loop blocks here.
                 i++;
-                telemetry.addData("Inside the while opModeIsActive: ", i);
+                telemetry.addData("Inside the while opModeIsActive:... ", i);
                 telemetry.update();
                 try {
                     Thread.sleep(1000);
