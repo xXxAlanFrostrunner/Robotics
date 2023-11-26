@@ -48,8 +48,8 @@ MAGENTA = Parking Right
             MAGENTA = new Scalar(255, 0, 255);
 
     // Percent and mat definitions
-    private double bluPercentLeft, bluPercentCenter, cyaPercentLeft, cyaPercentCenter, magPercentLeft, magPercentCenter;
-    private Mat bluMat = new Mat(), cyaMat = new Mat(), magMat = new Mat(), blurredMatLeft = new Mat(), blurredMatCenter = new Mat();
+    public double grayPercentLeft, grayPercentCenter, cyanPercentLeft, cyanPercentCenter, magentaPercentLeft, magentaPercentCenter;
+    private Mat grayMat = new Mat(), cyanMat = new Mat(), magentaMat = new Mat(), blurredMatLeft = new Mat(), blurredMatCenter = new Mat();
 
 //    // Anchor point definitions
 //    Point sleeve_pointA = new Point(
@@ -64,14 +64,26 @@ MAGENTA = Parking Right
     private volatile ColorDetected colorMiddle;
 
     private volatile Location location = CENTER;
-
-
+    private double maxPercentLeft;
+    private double maxPercentCenter;
 
     @Override
     public Mat processFrame(Mat input) {
 
-        Rect leftArea = new Rect(new Point(10,110), new Point(70,150));
-        Rect middleArea = new Rect(new Point(165,130), new Point(215,150));
+        // actual code.
+        //Rect leftArea = new Rect(new Point(10,110), new Point(70,150));
+        //Rect middleArea = new Rect(new Point(165,130), new Point(215,150));
+
+        // 320 x 240
+        Rect leftArea = new Rect(12,50,90,120);
+        Rect centerArea = new Rect(125,40,180,50);
+
+        //Rect leftRect = new Rect(1,1,219,959);
+        //Rect centerRect = new Rect(221,1,839,959);
+        //Rect rightRect = new Rect(1061,1,219,959);
+
+        //Rect leftArea = new Rect(2,40, 80,200);
+        //Rect middleArea = new Rect(100,200, 200,80);
 
         // Noise reduction
         Imgproc.blur(input, blurredMatLeft, new Size(5, 5));
@@ -82,39 +94,39 @@ MAGENTA = Parking Right
         Imgproc.morphologyEx(blurredMatLeft, blurredMatLeft, Imgproc.MORPH_CLOSE, kernelLeft);
 
         // Gets channels from given source mat
-        Core.inRange(blurredMatLeft, lower_gray_bounds, upper_gray_bounds, bluMat);
-        Core.inRange(blurredMatLeft, lower_cyan_bounds, upper_cyan_bounds, cyaMat);
-        Core.inRange(blurredMatLeft, lower_magenta_bounds, upper_magenta_bounds, magMat);
+        Core.inRange(blurredMatLeft, lower_gray_bounds, upper_gray_bounds, grayMat);
+        Core.inRange(blurredMatLeft, lower_cyan_bounds, upper_cyan_bounds, cyanMat);
+        Core.inRange(blurredMatLeft, lower_magenta_bounds, upper_magenta_bounds, magentaMat);
 
-        bluPercentLeft = Core.countNonZero(bluMat);
-        cyaPercentLeft = Core.countNonZero(cyaMat);
-        magPercentLeft = Core.countNonZero(magMat);
+        grayPercentLeft = Core.countNonZero(grayMat);
+        cyanPercentLeft = Core.countNonZero(cyanMat);
+        magentaPercentLeft = Core.countNonZero(magentaMat);
 
         Imgproc.blur(input, blurredMatCenter, new Size(5, 5));
-        blurredMatCenter = blurredMatCenter.submat(middleArea);
+        blurredMatCenter = blurredMatCenter.submat(centerArea);
 
         // Apply Morphology
         Mat kernelMiddle = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(3, 3));
         Imgproc.morphologyEx(blurredMatCenter, blurredMatCenter, Imgproc.MORPH_CLOSE, kernelMiddle);
 
         // Gets channels from given source mat
-        Core.inRange(blurredMatCenter, lower_gray_bounds, upper_gray_bounds, bluMat);
-        Core.inRange(blurredMatCenter, lower_cyan_bounds, upper_cyan_bounds, cyaMat);
-        Core.inRange(blurredMatCenter, lower_magenta_bounds, upper_magenta_bounds, magMat);
+        Core.inRange(blurredMatCenter, lower_gray_bounds, upper_gray_bounds, grayMat);
+        Core.inRange(blurredMatCenter, lower_cyan_bounds, upper_cyan_bounds, cyanMat);
+        Core.inRange(blurredMatCenter, lower_magenta_bounds, upper_magenta_bounds, magentaMat);
 
         // Gets color specific values
-        bluPercentCenter = Core.countNonZero(bluMat);
-        cyaPercentCenter = Core.countNonZero(cyaMat);
-        magPercentCenter = Core.countNonZero(magMat);
+        grayPercentCenter = Core.countNonZero(grayMat);
+        cyanPercentCenter = Core.countNonZero(cyanMat);
+        magentaPercentCenter = Core.countNonZero(magentaMat);
 
         // Calculates the highest amount of pixels being covered on each side
-        double maxPercentLeft = Math.max((bluPercentLeft), (Math.max(cyaPercentLeft, magPercentLeft)));
-        double maxPercentCenter = Math.max((bluPercentCenter), (Math.max(cyaPercentCenter, magPercentCenter)));
+        maxPercentLeft = Math.max((grayPercentLeft), (Math.max(cyanPercentLeft, magentaPercentLeft)));
+        maxPercentCenter = Math.max((grayPercentCenter), (Math.max(cyanPercentCenter, magentaPercentCenter)));
 
         // Checks all percentages, will highlight bounding box in camera preview
         // based on what color is being detected
 
-        if (maxPercentLeft == bluPercentLeft) {
+        if (maxPercentLeft == grayPercentLeft) {
             colorLeft = ColorDetected.GRAY;
             Imgproc.rectangle(
                     input,
@@ -122,7 +134,7 @@ MAGENTA = Parking Right
                     GRAY,
                     2
             );
-        } else if (maxPercentLeft == cyaPercentLeft) {
+        } else if (maxPercentLeft == cyanPercentLeft) {
             colorLeft = ColorDetected.CYAN;
             Imgproc.rectangle(
                     input,
@@ -130,7 +142,7 @@ MAGENTA = Parking Right
                     CYAN,
                     2
             );
-        } else if (maxPercentLeft == magPercentLeft) {
+        } else if (maxPercentLeft == magentaPercentLeft) {
             colorLeft = ColorDetected.MAGENTA;
             Imgproc.rectangle(
                     input,
@@ -140,27 +152,27 @@ MAGENTA = Parking Right
             );
         }
 
-        if (maxPercentCenter == bluPercentCenter) {
+        if (maxPercentCenter == grayPercentCenter) {
             colorMiddle = ColorDetected.GRAY;
             Imgproc.rectangle(
                     input,
-                    middleArea,
+                    centerArea,
                     GRAY,
                     2
             );
-        } else if (maxPercentCenter == cyaPercentCenter) {
+        } else if (maxPercentCenter == cyanPercentCenter) {
             colorMiddle = ColorDetected.CYAN;
             Imgproc.rectangle(
                     input,
-                    middleArea,
+                    centerArea,
                     CYAN,
                     2
             );
-        } else if (maxPercentCenter == magPercentCenter) {
+        } else if (maxPercentCenter == magentaPercentCenter) {
             colorMiddle = ColorDetected.MAGENTA;
             Imgproc.rectangle(
                     input,
-                    middleArea,
+                    centerArea,
                     MAGENTA,
                     2
             );
@@ -169,9 +181,9 @@ MAGENTA = Parking Right
         // Memory cleanup
         blurredMatLeft.release();
         blurredMatCenter.release();
-        bluMat.release();
-        cyaMat.release();
-        magMat.release();
+        grayMat.release();
+        cyanMat.release();
+        magentaMat.release();
 
 
         if ((colorLeft == CenterStageDetection.ColorDetected.CYAN) || (colorLeft == CenterStageDetection.ColorDetected.MAGENTA))
@@ -187,6 +199,14 @@ MAGENTA = Parking Right
     // Returns an enum being the current position where the robot will park
     public ColorDetected getColorLeft() {
         return colorLeft;
+    }
+
+    public double getmaxPercentLeft() {
+        return maxPercentLeft;
+    }
+
+    public double getmaxPercentCenter() {
+        return maxPercentCenter;
     }
 
     public ColorDetected getColorMiddle() {

@@ -49,14 +49,15 @@ public class Camera_v1 extends LinearOpMode {
             while (opModeIsActive()) {
                 // Put loop blocks here.
                 i++;
-                telemetry.addData("Inside the while opModeIsActive:... ", i);
+                telemetry.addData("Inside the while opModeIsActive: ", i);
                 telemetry.update();
-                try {
+                Utilities.Sleep(1000);
+                /*try {
                     Thread.sleep(1000);
                 } catch (Exception ex) {
                     telemetry.addData("Exception occurred from sleep block: ", i);
                     telemetry.update();
-                }
+                }*/
             }
         }
     }
