@@ -1,12 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
+//THIS ONE WORKS 
+
+
+
 import static org.firstinspires.ftc.teamcode.CenterStageDetection.Location.CENTER;
 import static org.firstinspires.ftc.teamcode.CenterStageDetection.Location.LEFT;
 import static org.firstinspires.ftc.teamcode.CenterStageDetection.Location.RIGHT;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
@@ -37,13 +40,13 @@ MAGENTA = Parking Right
             lower_gray_bounds  = new Scalar(140, 140, 140, 255),
             upper_gray_bounds  = new Scalar(170, 170, 170, 255),
             lower_cyan_bounds    = new Scalar(0, 45, 120, 255),
-            upper_cyan_bounds    = new Scalar(100, 255, 255, 255),
-            lower_magenta_bounds = new Scalar(140, 0, 0, 255),
-            upper_magenta_bounds = new Scalar(255, 150, 150, 255);
+            upper_cyan_bounds    = new Scalar(50, 255, 255, 255),
+            lower_magenta_bounds = new Scalar(155, 20, 60, 255),
+            upper_magenta_bounds = new Scalar(255, 60, 100, 255);
 
     // Color definitions
     private final Scalar
-            GRAY = new Scalar(155, 155, 155),
+            GRAY = new Scalar(103, 103, 103),
             CYAN    = new Scalar(0, 255, 255),
             MAGENTA = new Scalar(255, 0, 255);
 
@@ -69,14 +72,20 @@ MAGENTA = Parking Right
 
     @Override
     public Mat processFrame(Mat input) {
-
         // actual code.
         //Rect leftArea = new Rect(new Point(10,110), new Point(70,150));
         //Rect middleArea = new Rect(new Point(165,130), new Point(215,150));
 
         // 320 x 240
-        Rect leftArea = new Rect(12,50,90,120);
-        Rect centerArea = new Rect(125,40,180,50);
+
+        //Rect leftArea = new Rect(10,110, 70,150);
+        //Rect centerArea = new Rect(165,130, 215,150);
+
+        ///Rect leftArea = new Rect(1,10,90,120);
+        ///Rect centerArea = new Rect(155,20,80,80);
+
+        Rect leftArea = new Rect(45,80,25,25);
+        Rect centerArea = new Rect(200,90,20,20);
 
         //Rect leftRect = new Rect(1,1,219,959);
         //Rect centerRect = new Rect(221,1,839,959);
@@ -179,12 +188,6 @@ MAGENTA = Parking Right
         }
 
         // Memory cleanup
-        blurredMatLeft.release();
-        blurredMatCenter.release();
-        grayMat.release();
-        cyanMat.release();
-        magentaMat.release();
-
 
         if ((colorLeft == CenterStageDetection.ColorDetected.CYAN) || (colorLeft == CenterStageDetection.ColorDetected.MAGENTA))
             location = LEFT;
@@ -214,5 +217,22 @@ MAGENTA = Parking Right
     }
 
     public Location getLocation() {return location;}
+
+    public void finalize() throws Throwable {
+        close();
+        super.finalize();
+    }
+
+    public void close() {
+        blurredMatLeft.release();
+        blurredMatCenter.release();
+        grayMat.release();
+        cyanMat.release();
+        magentaMat.release();
+    }
 }
+
+
+
+
 
