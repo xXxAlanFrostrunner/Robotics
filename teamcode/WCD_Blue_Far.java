@@ -134,6 +134,15 @@ public class WCD_Blue_Far extends LinearOpMode {
                 BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 // Reset the motor encoder
 
+                        FL.setPower(-0.35);
+                        BL.setPower(0.35);
+                        FR.setPower(0.35);
+                        BR.setPower(-0.35);
+                sleep(500);
+
+                        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
                 FL.setPower(-0.35);
                 BL.setPower(-0.35);
                 FR.setPower(-0.35);
@@ -158,7 +167,7 @@ public class WCD_Blue_Far extends LinearOpMode {
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(0.35);
-                sleep(1937);
+                sleep(1875);
 
                 FL.setPower(0);
                 BL.setPower(0);
@@ -261,7 +270,7 @@ public class WCD_Blue_Far extends LinearOpMode {
                 FR.setPower(0.35);
                 BR.setPower(0.35);
                 MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition <= -850)) {
+                while (!(isStopRequested() || MoveEncoderPosition <= -250)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();
@@ -277,7 +286,7 @@ public class WCD_Blue_Far extends LinearOpMode {
                 FR.setPower(-0.35);
                 BR.setPower(0.35);
                 MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition <= -1650)) {
+                while (!(isStopRequested() || MoveEncoderPosition <= -1450)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();
@@ -292,7 +301,7 @@ public class WCD_Blue_Far extends LinearOpMode {
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(0.35);
-                sleep(750);
+                sleep(1500);
 
                 FL.setPower(0);
                 BL.setPower(0);

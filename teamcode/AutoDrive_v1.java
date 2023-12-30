@@ -14,11 +14,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 public class AutoDrive_v1 extends LinearOpMode {
 
     int MoveEncoderPosition = 0;
-    int CenterSpikeDropOff = 1450;
+    int CenterSpikeDropOff = 1550;
 
     int CenterSpikeDropOff1 = 1000;
     double RedFarLeft = -400;
     double RedFarRightTurn = 1100;
+    double BlueCloseLeft = -450;
+    double BlueCloseRightTurn = 1050;
     int timer = 15000;
     private IMU imu;
 
@@ -90,7 +92,7 @@ public class AutoDrive_v1 extends LinearOpMode {
 
             MoveEncoderPosition = BR.getCurrentPosition();
 
-            while (!(isStopRequested() || MoveEncoderPosition <= RedFarLeft)) {
+            while (!(isStopRequested() || MoveEncoderPosition <= BlueCloseLeft)) {
                 MoveEncoderPosition = BR.getCurrentPosition();
                 telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                 telemetry.update();
@@ -100,6 +102,7 @@ public class AutoDrive_v1 extends LinearOpMode {
             BL.setPower(0);
             FR.setPower(0);
             BR.setPower(0);
+
 
             BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -111,7 +114,7 @@ public class AutoDrive_v1 extends LinearOpMode {
             BR.setPower(-0.35);
             MoveEncoderPosition = BR.getCurrentPosition();
 
-            while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff - 300)) {
+            while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 + 400)) {
                 MoveEncoderPosition = BR.getCurrentPosition();
                 telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                 telemetry.update();
@@ -131,7 +134,7 @@ public class AutoDrive_v1 extends LinearOpMode {
             BR.setPower(0.5);
             MoveEncoderPosition = BR.getCurrentPosition();
 
-            while (!(isStopRequested() || MoveEncoderPosition >= RedFarRightTurn)) {
+            while (!(isStopRequested() || MoveEncoderPosition >= BlueCloseRightTurn)) {
                 MoveEncoderPosition = BR.getCurrentPosition();
                 telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                 telemetry.update();
@@ -150,7 +153,7 @@ public class AutoDrive_v1 extends LinearOpMode {
             FR.setPower(-0.35);
             BR.setPower(-0.35);
             MoveEncoderPosition = BR.getCurrentPosition();
-            while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 - 150)) {
+            while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 -100)) {
                 MoveEncoderPosition = BR.getCurrentPosition();
                 telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                 telemetry.update();
@@ -161,12 +164,16 @@ public class AutoDrive_v1 extends LinearOpMode {
             FR.setPower(0);
             BR.setPower(0);
 
+
+            BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
             FL.setPower(0.35);
             BL.setPower(0.35);
             FR.setPower(0.35);
             BR.setPower(0.35);
             MoveEncoderPosition = BR.getCurrentPosition();
-            while (!(isStopRequested() || MoveEncoderPosition <= -250)) {
+            while (!(isStopRequested() || MoveEncoderPosition <= -1000)) {
                 MoveEncoderPosition = BR.getCurrentPosition();
                 telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                 telemetry.update();
@@ -176,13 +183,17 @@ public class AutoDrive_v1 extends LinearOpMode {
             BL.setPower(0);
             FR.setPower(0);
             BR.setPower(0);
+            sleep(3000);
+
+//            BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//            BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
             FL.setPower(-0.35);
             BL.setPower(0.35);
             FR.setPower(0.35);
             BR.setPower(-0.35);
             MoveEncoderPosition = BR.getCurrentPosition();
-            while (!(isStopRequested() || MoveEncoderPosition >= 1100)) {
+            while (!(isStopRequested() || MoveEncoderPosition >= 500)) {
                 MoveEncoderPosition = BR.getCurrentPosition();
                 telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                 telemetry.update();
@@ -197,19 +208,7 @@ public class AutoDrive_v1 extends LinearOpMode {
             BL.setPower(0.35);
             FR.setPower(0.35);
             BR.setPower(0.35);
-            sleep(1000);
-
-            FL.setPower(0);
-            BL.setPower(0);
-            FR.setPower(0);
-            BR.setPower(0);
-            sleep(timer);
-
-            FL.setPower(-0.45);
-            BL.setPower(-0.45);
-            FR.setPower(-0.45);
-            BR.setPower(-0.45);
-            sleep(7500);
+            sleep(2000);
 
             //            // Put run blocks here
 //

@@ -170,7 +170,75 @@ public class WCD_Blue_Close extends LinearOpMode {
                 BR.setPower(-0.35);
                 MoveEncoderPosition = BR.getCurrentPosition();
 
-                while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 +100)) {
+                while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 + 100)) {
+                    MoveEncoderPosition = BR.getCurrentPosition();
+                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
+                    telemetry.update();
+                    sleep(20);
+                }
+                FL.setPower(0);
+                BL.setPower(0);
+                FR.setPower(0);
+                BR.setPower(0);
+
+                FL.setPower(0.35);
+                BL.setPower(0.35);
+                FR.setPower(0.35);
+                BR.setPower(0.35);
+                sleep(2500);
+
+                FL.setPower(0.35);
+                BL.setPower(-0.35);
+                FR.setPower(-0.35);
+                BR.setPower(0.35);
+                sleep(3500);
+                FL.setPower(0);
+                BL.setPower(0);
+                FR.setPower(0);
+                BR.setPower(0);
+
+                FL.setPower(0);
+                BL.setPower(0);
+                FR.setPower(0);
+                BR.setPower(0);
+                sleep(30000);
+
+                        }
+            if(detector.getLocation() == org.firstinspires.ftc.teamcode.CenterStageDetection.Location.RIGHT){
+                BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                // Reset the motor encoder
+
+                FL.setPower(0.35);
+                BL.setPower(-0.35);
+                FR.setPower(-0.35);
+                BR.setPower(0.35);
+
+                MoveEncoderPosition = BR.getCurrentPosition();
+
+                while (!(isStopRequested() || MoveEncoderPosition <= BlueCloseLeft)) {
+                    MoveEncoderPosition = BR.getCurrentPosition();
+                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
+                    telemetry.update();
+                    sleep(20);
+                }
+                FL.setPower(0);
+                BL.setPower(0);
+                FR.setPower(0);
+                BR.setPower(0);
+
+
+                BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                // Reset the motor encoder
+
+                FL.setPower(-0.35);
+                BL.setPower(-0.35);
+                FR.setPower(-0.35);
+                BR.setPower(-0.35);
+                MoveEncoderPosition = BR.getCurrentPosition();
+
+                while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 + 400)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();
@@ -209,7 +277,7 @@ public class WCD_Blue_Close extends LinearOpMode {
                 FR.setPower(-0.35);
                 BR.setPower(-0.35);
                 MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1- 200 )) {
+                while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 -100)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();
@@ -220,155 +288,14 @@ public class WCD_Blue_Close extends LinearOpMode {
                 FR.setPower(0);
                 BR.setPower(0);
 
-                FL.setPower(0.35);
-                BL.setPower(0.35);
-                FR.setPower(0.35);
-                BR.setPower(0.35);
-                MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition <= -250)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-
-                FL.setPower(-0.35);
-                BL.setPower(0.35);
-                FR.setPower(0.35);
-                BR.setPower(-0.35);
-                MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition >= 1230)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-
-                FL.setPower(0.35);
-                BL.setPower(0.35);
-                FR.setPower(0.35);
-                BR.setPower(0.35);
-                sleep(2500);
-
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-                sleep(30000);
-
-                        }
-            if(detector.getLocation() == org.firstinspires.ftc.teamcode.CenterStageDetection.Location.RIGHT){
-                BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                // Reset the motor encoder
-
-                FL.setPower(0.35);
-                BL.setPower(-0.35);
-                FR.setPower(-0.35);
-                BR.setPower(0.35);
-
-                MoveEncoderPosition = BR.getCurrentPosition();
-
-                while (!(isStopRequested() || MoveEncoderPosition <= BlueCloseLeft)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                    FL.setPower(0);
-                    BL.setPower(0);
-                    FR.setPower(0);
-                    BR.setPower(0);
-
-
-                    BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                // Reset the motor encoder
-
-                FL.setPower(-0.35);
-                BL.setPower(-0.35);
-                FR.setPower(-0.35);
-                BR.setPower(-0.35);
-                MoveEncoderPosition = BR.getCurrentPosition();
-
-                while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 -300)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
 
                 BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-                FL.setPower(-0.5);
-                BL.setPower(-0.5);
-                FR.setPower(0.5);
-                BR.setPower(0.5);
-                MoveEncoderPosition = BR.getCurrentPosition();
-
-                while (!(isStopRequested() || MoveEncoderPosition <= BlueCloseRightTurn)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-
-                BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-                FL.setPower(-0.35);
-                BL.setPower(-0.35);
-                FR.setPower(-0.35);
-                BR.setPower(-0.35);
-                MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff1 - 175)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-
                 FL.setPower(0.35);
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(0.35);
-                MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition <= -250)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-
-                FL.setPower(-0.35);
-                BL.setPower(0.35);
-                FR.setPower(0.35);
-                BR.setPower(-0.35);
                 MoveEncoderPosition = BR.getCurrentPosition();
                 while (!(isStopRequested() || MoveEncoderPosition <= -1000)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
@@ -380,12 +307,32 @@ public class WCD_Blue_Close extends LinearOpMode {
                 BL.setPower(0);
                 FR.setPower(0);
                 BR.setPower(0);
+                sleep(3000);
+
+//            BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//            BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+                FL.setPower(-0.35);
+                BL.setPower(0.35);
+                FR.setPower(0.35);
+                BR.setPower(-0.35);
+                MoveEncoderPosition = BR.getCurrentPosition();
+                while (!(isStopRequested() || MoveEncoderPosition >= 500)) {
+                    MoveEncoderPosition = BR.getCurrentPosition();
+                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
+                    telemetry.update();
+                    sleep(20);
+                }
+                FL.setPower(0);
+                BL.setPower(0);
+                FR.setPower(0);
+                BR.setPower(0);
 
                 FL.setPower(0.35);
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(0.35);
-                sleep(2500);
+                sleep(2000);
             }
         }
 
