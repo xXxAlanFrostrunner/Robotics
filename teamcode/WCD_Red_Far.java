@@ -291,7 +291,7 @@ public class WCD_Red_Far extends LinearOpMode {
                 FR.setPower(0.35);
                 BR.setPower(-0.35);
                 MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition >= 1125)) {
+                while (!(isStopRequested() || MoveEncoderPosition >= 1145)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();

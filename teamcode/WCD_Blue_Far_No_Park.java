@@ -23,15 +23,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 
 
-@Autonomous(name = "WCD_Red_Close")
-public class WCD_Red_Close extends LinearOpMode {
+@Autonomous(name = "WCD_Blue_Far_No_Park")
+public class WCD_Blue_Far_No_Park extends LinearOpMode {
     /**
      * This function is executed when this OpMode is selected from the Driver Station.
      */
     double MoveEncoderPosition = 0;
     double CenterSpikeDropOff = 1550;
     int CenterSpikeDropOff1 = 1000;
-    double RedCloseRight = 775;
+    double BlueFarRight = 675;
     double BlueFarLeftTurn = -650;
 
     int timer = 15000;
@@ -138,24 +138,10 @@ public class WCD_Red_Close extends LinearOpMode {
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(-0.35);
-                MoveEncoderPosition = BR.getCurrentPosition();
-
-                while (!(isStopRequested() || MoveEncoderPosition >= 100)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-
-
+                sleep(500);
 
                 BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                // Reset the motor encoder
 
                 FL.setPower(-0.35);
                 BL.setPower(-0.35);
@@ -181,49 +167,29 @@ public class WCD_Red_Close extends LinearOpMode {
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(0.35);
-                MoveEncoderPosition = BR.getCurrentPosition();
-
-                while (!(isStopRequested() || MoveEncoderPosition <= -1265)) {
-                    MoveEncoderPosition = BR.getCurrentPosition();
-                    telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-                    telemetry.update();
-                    sleep(20);
-                }
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-                sleep(3000);
-                FL.setPower(-0.5);
-                BL.setPower(0.5);
-                FR.setPower(0.5);
-                BR.setPower(-0.5);
-                sleep(3500);
+                sleep(1875);
 
                 FL.setPower(0);
                 BL.setPower(0);
                 FR.setPower(0);
                 BR.setPower(0);
                 sleep(30000);
+
+                FL.setPower(0);
+                BL.setPower(0);
+                FR.setPower(0);
+                BR.setPower(0);
             }
             if (detector.getLocation() == org.firstinspires.ftc.teamcode.CenterStageDetection.Location.LEFT) {
                 BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                // Reset the motor encoder
 
                 FL.setPower(-0.35);
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(-0.35);
-
                 MoveEncoderPosition = BR.getCurrentPosition();
-
-                while (!(isStopRequested() || MoveEncoderPosition >= RedCloseRight)) {
+                while (!(isStopRequested() || MoveEncoderPosition >= BlueFarRight)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();
@@ -299,7 +265,7 @@ public class WCD_Red_Close extends LinearOpMode {
                 FR.setPower(0.35);
                 BR.setPower(0.35);
                 MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition <= -850)) {
+                while (!(isStopRequested() || MoveEncoderPosition <= -250)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();
@@ -315,7 +281,7 @@ public class WCD_Red_Close extends LinearOpMode {
                 FR.setPower(-0.35);
                 BR.setPower(0.35);
                 MoveEncoderPosition = BR.getCurrentPosition();
-                while (!(isStopRequested() || MoveEncoderPosition <= -1650)) {
+                while (!(isStopRequested() || MoveEncoderPosition <= -1450)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();
@@ -330,14 +296,13 @@ public class WCD_Red_Close extends LinearOpMode {
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(0.35);
-                sleep(750);
+                sleep(1500);
 
                 FL.setPower(0);
                 BL.setPower(0);
                 FR.setPower(0);
                 BR.setPower(0);
                 sleep(30000);
-
             }
             if (detector.getLocation() == org.firstinspires.ftc.teamcode.CenterStageDetection.Location.RIGHT) {
                 BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -351,7 +316,7 @@ public class WCD_Red_Close extends LinearOpMode {
 
                 MoveEncoderPosition = BR.getCurrentPosition();
 
-                while (!(isStopRequested() || MoveEncoderPosition >= RedCloseRight)) {
+                while (!(isStopRequested() || MoveEncoderPosition >= BlueFarRight)) {
                     MoveEncoderPosition = BR.getCurrentPosition();
                     telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
                     telemetry.update();
@@ -387,25 +352,14 @@ public class WCD_Red_Close extends LinearOpMode {
                 BL.setPower(0.35);
                 FR.setPower(0.35);
                 BR.setPower(0.35);
-                sleep(1600);
+                sleep(1700);
+
 
                 FL.setPower(0);
                 BL.setPower(0);
                 FR.setPower(0);
                 BR.setPower(0);
-
-                FL.setPower(0);
-                BL.setPower(0);
-                FR.setPower(0);
-                BR.setPower(0);
-                sleep(3000);
-
-                FL.setPower(-0.5);
-                BL.setPower(0.5);
-                FR.setPower(0.5);
-                BR.setPower(-0.5);
-                sleep(2500);
-
+                sleep(30000);
 
             }
         }
