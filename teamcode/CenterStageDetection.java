@@ -84,8 +84,8 @@ MAGENTA = Parking Right
         ///Rect leftArea = new Rect(1,10,90,120);
         ///Rect centerArea = new Rect(155,20,80,80);
 
-        Rect leftArea = new Rect(45,80,25,25);
-        Rect centerArea = new Rect(200,90,20,20);
+        Rect leftArea = new Rect(35,70,25,25);
+        Rect centerArea = new Rect(180,80,20,20);
 
         //Rect leftRect = new Rect(1,1,219,959);
         //Rect centerRect = new Rect(221,1,839,959);
