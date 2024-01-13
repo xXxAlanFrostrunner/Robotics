@@ -1,4 +1,4 @@
-import org.firstinspires.ftc.teamcode.AutoDrive_v1;
+import org.firstinspires.ftc.teamcode.Encoder_Position_and_Motor_Testing;
 
-public class AutoDrive_v1Impl extends AutoDrive_v1 {
+public class AutoDrive_v1Impl extends Encoder_Position_and_Motor_Testing {
 }

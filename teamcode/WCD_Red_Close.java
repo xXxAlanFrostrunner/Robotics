@@ -98,7 +98,7 @@ public class WCD_Red_Close extends LinearOpMode {
         webcam1.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-                webcam1.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+                webcam1.startStreaming(320, 240, OpenCvCameraRotation.UPSIDE_DOWN);
             }
 
             @Override

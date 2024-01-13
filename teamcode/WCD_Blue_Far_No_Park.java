@@ -98,7 +98,7 @@ public class WCD_Blue_Far_No_Park extends LinearOpMode {
         webcam1.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-                webcam1.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+                webcam1.startStreaming(320, 240, OpenCvCameraRotation.UPSIDE_DOWN);
             }
 
             @Override
