@@ -96,18 +96,27 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
 
 
         }
+        GreenGrip.setPosition(0.234);
+
+        TC.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        TC.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        TR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        TR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         // Reset the motor encoder
         GreenGrip.setPosition(0.234);
 
         FL.setPower(-0.35);
-        BL.setPower(-0.35);
-        FR.setPower(-0.35);
+        BL.setPower(0.35);
+        FR.setPower(0.35);
         BR.setPower(-0.35);
         MoveEncoderPosition = BR.getCurrentPosition();
 
-        while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff - 100)) {
+        while (!(isStopRequested() || MoveEncoderPosition >= 100)) {
             MoveEncoderPosition = BR.getCurrentPosition();
             telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
             telemetry.update();
@@ -118,26 +127,33 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         FR.setPower(0);
         BR.setPower(0);
 
+        FL.setPower(-0.35);
+        BL.setPower(-0.35);
+        FR.setPower(-0.35);
+        BR.setPower(-0.35);
+        MoveEncoderPosition = BR.getCurrentPosition();
+
+        while (!(isStopRequested() || MoveEncoderPosition >= CenterSpikeDropOff+100)) {
+            MoveEncoderPosition = BR.getCurrentPosition();
+            telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
+            telemetry.update();
+            sleep(20);
+        }
+        FL.setPower(0);
+        BL.setPower(0);
+        FR.setPower(0);
+        BR.setPower(0);
+
+        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         FL.setPower(0.35);
         BL.setPower(0.35);
         FR.setPower(0.35);
         BR.setPower(0.35);
         MoveEncoderPosition = BR.getCurrentPosition();
 
-        while (!(isStopRequested() || MoveEncoderPosition <= -50)) {
-            MoveEncoderPosition = BR.getCurrentPosition();
-            telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-            telemetry.update();
-            sleep(20);
-        }
-
-        FL.setPower(0.5);
-        BL.setPower(-0.5);
-        FR.setPower(-0.5);
-        BR.setPower(0.5);
-        MoveEncoderPosition = BR.getCurrentPosition();
-
-        while (!(isStopRequested() || MoveEncoderPosition <= -1300)) {
+        while (!(isStopRequested() || MoveEncoderPosition <= -300)) {
             MoveEncoderPosition = BR.getCurrentPosition();
             telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
             telemetry.update();
@@ -149,11 +165,31 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
 
         FL.setPower(-0.5);
         BL.setPower(-0.5);
+        FR.setPower(0.5);
+        BR.setPower(0.5);
+        MoveEncoderPosition = BR.getCurrentPosition();
+
+        while (!(isStopRequested() || MoveEncoderPosition >= 1000)) {
+            MoveEncoderPosition = BR.getCurrentPosition();
+            telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
+            telemetry.update();
+            sleep(20);
+        }
+        FL.setPower(0);
+        BL.setPower(0);
+        FR.setPower(0);
+        BR.setPower(0);
+
+        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        FL.setPower(-0.5);
+        BL.setPower(-0.5);
         FR.setPower(-0.5);
         BR.setPower(-0.5);
         MoveEncoderPosition = BR.getCurrentPosition();
 
-        while (!(isStopRequested() || MoveEncoderPosition >= 1050)) {
+        while (!(isStopRequested() || MoveEncoderPosition >= 1450)) {
             MoveEncoderPosition = BR.getCurrentPosition();
             telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
             telemetry.update();
@@ -163,13 +199,13 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        FL.setPower(0.5);
-        BL.setPower(0.5);
-        FR.setPower(-0.5);
-        BR.setPower(-0.5);
+        FL.setPower(0.35);
+        BL.setPower(-0.35);
+        FR.setPower(-0.35);
+        BR.setPower(0.35);
         MoveEncoderPosition = BR.getCurrentPosition();
 
-        while (!(isStopRequested() || MoveEncoderPosition <= CenterYellowDropTurn)) {
+        while (!(isStopRequested() || MoveEncoderPosition <= -180)) {
             MoveEncoderPosition = BR.getCurrentPosition();
             telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
             telemetry.update();
@@ -187,9 +223,9 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         TL.setPower(1);
         MoveEncoderPosition = TR.getCurrentPosition();
 
-        while(!(isStopRequested() || MoveEncoderPosition >= 5000)) {
+        while(!(isStopRequested() || MoveEncoderPosition >= 3500)) {
             MoveEncoderPosition = TR.getCurrentPosition();
-            telemetry.addData("Movement Encoder Position", MoveEncoderPosition);
+            telemetry.addData("Scissor Lift Encoder Position", MoveEncoderPosition);
             telemetry.update();
             sleep(20);
         }
@@ -204,23 +240,23 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         TR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         TR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        FL.setPower(-0.5);
-        BL.setPower(-0.5);
-        FR.setPower(-0.5);
-        BR.setPower(-0.5);
-        MoveEncoderPosition = BR.getCurrentPosition();
-
-        while (!(isStopRequested() || MoveEncoderPosition >= 225)) {
-            MoveEncoderPosition = BR.getCurrentPosition();
-            telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
-            telemetry.update();
-            sleep(20);
-        }
-
-        FL.setPower(0);
-        BL.setPower(0);
-        FR.setPower(0);
-        BR.setPower(0);
+//        FL.setPower(-0.5);
+//        BL.setPower(-0.5);
+//        FR.setPower(-0.5);
+//        BR.setPower(-0.5);
+//        MoveEncoderPosition = BR.getCurrentPosition();
+//
+//        while (!(isStopRequested() || MoveEncoderPosition >= 125)) {
+//            MoveEncoderPosition = BR.getCurrentPosition();
+//            telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
+//            telemetry.update();
+//            sleep(20);
+//        }
+//
+//        FL.setPower(0);
+//        BL.setPower(0);
+//        FR.setPower(0);
+//        BR.setPower(0);
 
         TC.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         TC.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -246,13 +282,13 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         TC.setPower(0);
         sleep(3000);
 
-        FL.setPower(0.25);
-        BL.setPower(0.25);
-        FR.setPower(0.25);
-        BR.setPower(0.25);
+        FL.setPower(0.5);
+        BL.setPower(0.5);
+        FR.setPower(0.5);
+        BR.setPower(0.5);
         MoveEncoderPosition = BR.getCurrentPosition();
 
-        while (!(isStopRequested() || MoveEncoderPosition <= -250)) {
+        while (!(isStopRequested() || MoveEncoderPosition <= -275)) {
             MoveEncoderPosition = BR.getCurrentPosition();
             telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
             telemetry.update();
@@ -271,9 +307,9 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         TL.setPower(-1);
         MoveEncoderPosition = TR.getCurrentPosition();
 
-        while(!(isStopRequested() || MoveEncoderPosition <= -5200)) {
+        while(!(isStopRequested() || MoveEncoderPosition <= -3000)) {
             MoveEncoderPosition = TR.getCurrentPosition();
-            telemetry.addData("Movement Encoder Position", MoveEncoderPosition);
+            telemetry.addData("Scissor Lift Encoder Position", MoveEncoderPosition);
             telemetry.update();
             sleep(20);
         }
@@ -286,13 +322,13 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        FL.setPower(0.5);
-        BL.setPower(-0.5);
-        FR.setPower(-0.5);
-        BR.setPower(0.5);
+        FL.setPower(-0.5);
+        BL.setPower(0.5);
+        FR.setPower(0.5);
+        BR.setPower(-0.5);
         MoveEncoderPosition = BR.getCurrentPosition();
 
-        while (!(isStopRequested() || MoveEncoderPosition <= -3000)) {
+        while (!(isStopRequested() || MoveEncoderPosition >= 2300)) {
             MoveEncoderPosition = BR.getCurrentPosition();
             telemetry.addData("Movement Encoder Postion", MoveEncoderPosition);
             telemetry.update();
@@ -303,12 +339,21 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         BL.setPower(-0.35);
         FR.setPower(-0.35);
         BR.setPower(-0.35);
-        sleep(3500);
+        sleep(2500);
 
 
+        FL.setPower(0);
+        BL.setPower(0);
+        FR.setPower(0);
+        BR.setPower(0);
+        sleep(30000);
 
-
-
+        TC.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        TC.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        TR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        TR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
 
@@ -320,6 +365,7 @@ public class Encoder_Position_and_Motor_Testing extends LinearOpMode {
         BR.setPower(0);
 
         TC.setPower(0);
+
 
         while (opModeIsActive()) {
 
